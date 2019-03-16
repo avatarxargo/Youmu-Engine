@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	Youmu dress up template
+	by HrusaArt
+	====================
+	Here Ill explain how to use these templates in general.
+	xs: before some tags makes sure they will show up ordered properly when loaded from XML.
+-->
+
+<!--The DressupCharacter attributes are quite self-explanatory-->
+<DressupCharacter name="DCGI Youmu" author="HrusaArt" description="Youmu is Yuyuko's gardener." >
+
+	<!--Layers are the visual part of the dress up character. Players will not manipulate them directly, but they may be toggled via <Controllers>.
+		file - path to either png or jpg file.
+		label - identification for <Controller>s (if not defined equals file name)
+		wink - if set to true, this layer will be periodically toggled to emulate winking.
+		interactive - if set to false, clicking on the layer on the character will not hide it.
+	-->
+	<xs:Layers>
+		<xs:Layer file="nametags_youmu.png" interactive="false"/>
+		<xs:Layer file="ghostcover.png" interactive="false"/>
+		<xs:Layer file="vr.png"/>
+		<xs:Layer file="greenbow.png"/>
+		<xs:Layer file="blackbow.png"/>
+		<xs:Layer file="hoodie.png"/>
+		<xs:Layer file="kvest.png"/>
+		<xs:Layer file="dcgishirt.png"/>		
+		<xs:Layer file="yshirt.png"/>		
+		<xs:Layer file="kskirt.png"/>
+		<xs:Layer file="shimtop.png"/>
+		<xs:Layer file="shirt.png"/>
+		<xs:Layer file="petticoat.png"/>
+		<xs:Layer file="bshorts.png"/>
+		<xs:Layer file="bpants.png"/>
+		<xs:Layer file="slippers.png"/>
+		<xs:Layer file="kboots.png"/>
+		<xs:Layer file="2husocks.png"/>
+		<xs:Layer file="stripesocks.png"/>
+		<xs:Layer file="pantyhoseg.png"/>
+		<xs:Layer file="pantyhoses.png"/>
+		<xs:Layer file="pantyhoseb.png"/>
+		<xs:Layer file="wink.png"	interactive="false" wink="true"/>
+		<xs:Layer file="face4.png" interactive="false"/>
+		<xs:Layer file="face2.png" interactive="false"/>
+		<xs:Layer file="face1.png" interactive="false"/>
+		<xs:Layer file="blank.png" interactive="false"/>
+		<xs:Layer file="baseB.png" interactive="false"/>
+		<xs:Layer file="baseA.png" label="baseA" interactive="false"/>
+	</xs:Layers>
+	
+	<!--Controller is what the user sees in their list.
+		label - is how the controller shows up
+		layers - list of layers affected by the state of the controller
+		cathegories - list of <Tag>s to filter by.
+		startEnabled - is visible when the default character is loaded?
+	-->
+	<xs:Controllers>
+		<xs:MultiController label="Facial expression" cathegories="multi" startValue="0">
+			<xs:Choice label="Face: Laughing"	layers="blank"/>
+			<xs:Choice label="Face: Displeased"	layers="face1"/>
+			<xs:Choice label="Face: Smirk"			layers="face2"/>
+			<xs:Choice label="Face: Shocked"		layers="face4"/>
+		</xs:MultiController>
+		<xs:Controller label="Pantyhose (black)"	cathegories="socks" layers="pantyhoseb"/>
+		<xs:Controller label="Pantyhose (clear)"	cathegories="socks" layers="pantyhoses"/>
+		<xs:Controller label="Pantyhose (green)"	cathegories="socks" layers="pantyhoseg"/>
+		<xs:Controller label="Touhou socks"		cathegories="konpaku,socks" layers="2husocks" startEnabled="true"/>
+		<xs:Controller label="Striped socks"		cathegories="dcgi,socks" layers="stripesocks"/>
+		<xs:Controller label="Konpaku shoes"		cathegories="konpaku,boots" layers="kboots" startEnabled="true"/>
+		<xs:Controller label="Slippers"			cathegories="dcgi,boots" layers="slippers"/>
+		<xs:Controller label="Pants (Brown)"		cathegories="dcgi,skirt" layers="bpants"/>
+		<xs:Controller label="Shorts (Brown)"		cathegories="dcgi,skirt" layers="bshorts"/>
+		<xs:Controller label="Petticoat"			cathegories="underwear,skirt" layers="petticoat" startEnabled="true"/>
+		<xs:Controller label="Puffy shirt"			cathegories="top" layers="shirt" startEnabled="true"/>
+		<xs:Controller label="Sailor Top"		cathegories="shimakaze,top,cosplay" layers="shimtop"/>
+		<xs:Controller label="DCGI T-Shirt"		cathegories="dcgi,top" layers="dcgishirt"/>
+		<xs:Controller label="Yellow T-Shirt"		cathegories="top" layers="yshirt"/>
+		<xs:Controller label="Konpaku skirt"		cathegories="konpaku,skirt" layers="kskirt" startEnabled="true"/>
+		<xs:Controller label="Konpaku vest"		cathegories="konpaku,top" layers="kvest" startEnabled="true"/>
+		<xs:Controller label="Hoodie"		cathegories="dcgi,top" layers="hoodie"/>
+		<xs:Controller label="Black bow"			cathegories="konpaku,accessories" layers="blackbow" startEnabled="true"/>
+		<xs:Controller label="Green bow"			cathegories="accessories" layers="greenbow"/>
+		<xs:Controller label="VR Headset"			cathegories="dcgi,accessories" layers="vr"/>
+		<xs:MultiController label="Body" cathegories="multi" startValue="1">
+			<xs:Choice label="Only Youmu"		layers="baseA"/>
+			<xs:Choice label="Youmu and Ghost"	layers="baseB,ghostcover"/>
+		</xs:MultiController>
+	</xs:Controllers>
+	
+	<!--Tags assign a nicer display name to the cathegories of <Controller>s
+		label - the name vissible to users.
+		tag - corresponding <Controller> cathegory.
+	-->
+	<Tags>
+		<Tag label="Multiple choice" tag="multi"/>
+		<Tag label="Konpaku" tag="konpaku"/>
+		<Tag label="DCGI" tag="dcgi"/>
+		<Tag label="Top" tag="top"/>
+		<Tag label="Skirts / Pants" tag="skirt"/>
+		<Tag label="Socks" tag="socks"/>
+		<Tag label="Shoes" tag="boots"/>
+		<Tag label="Accessories" tag="accessories"/>
+	</Tags>
+	
+	<!--
+		Voicelines are the specific sound queues that may be used by <Dialog> <Line>s.
+		file - path to a wav or ogg file.
+		tag - tags by which a <Line> can choose randomly from a pool of alternate sounds.
+		(You can have three intonations of saying something to mix things up for instance and just tag them "something".)
+	-->
+	<Voicelines>
+		<Voice file="Poi1.wav" tag="random"/>
+		<Voice file="Poi2.wav" tag="random"/>
+		<Voice file="Poi3.wav" tag="random"/>
+		<Voice file="Poi4.wav" tag="random"/>
+		<Voice file="Poi5.wav" tag="random"/>
+		<Voice file="Poi6.wav" tag="random"/>
+		<Voice file="Poi7.wav" tag="random"/>
+		<Voice file="Poi8.wav" tag="random"/>
+		<Voice file="Poi9.wav" tag="random"/>
+		<Voice file="Poi10.wav" tag="random"/>
+		<Voice file="Poi11.wav" tag="random"/>
+		<Voice file="Poi12.wav" tag="random"/>
+		<Voice file="Poi13.wav" tag="random"/>
+		<Voice file="Poi14.wav" tag="random"/>
+		<Voice file="Poi15.wav" tag="random"/>
+		<Voice file="Poi16.wav" tag="random"/>
+		<Voice file="Poi17.wav" tag="random"/>
+		<Voice file="Poi18.wav" tag="random"/>
+		<Voice file="Poi19.wav" tag="random"/>
+		<Voice file="Poi20.wav" tag="random"/>
+		<Voice file="supplypoipoi.wav"/>
+	</Voicelines>
+	
+	<!--Simple list of center and pointer coordinates for a speech bubble. Chosen randomly.-->
+	<SpeechBubbles>
+		<Dimensions centerx="820" centery="270" pointerx="705" pointery="213"/>
+		<Dimensions centerx="450" centery="270" pointerx="605" pointery="213"/>
+	</SpeechBubbles>
+	
+	<!--
+		What a character says in certain situations.
+		text - The text displayed in the text bubble.
+		audiotag	- a tag determining the pool of <Voicelines> to draw from when selecting a sound effect for the <Dialog>.
+					- alternatively you may enter a filename without the extension to select a specific track without randomisation.
+		tag - list of situations when the dialog may occur. These are:
+			on - when putting clothes on.
+			off - when taking clothes off.
+			welcome - played once, when we load up a scene with this character.
+			idle - when weve been inactive for a while.
+			hover - when we are hovering over a piece of clothing.
+	-->
+	<Dialog>
+		<Line text="What do you think about this?" audiotag="random" tag="on"/>
+		<Line text="What do you think about this combination?" audiotag="random" tag="on"/>
+		<Line text="Now this is something." audiotag="random" tag="on"/>
+		<Line text="Looking pretty good." audiotag="random" tag="on"/>
+		<Line text="Smart. I like this." audiotag="random" tag="on"/>
+		<Line text="Cute!" audiotag="random" tag="on"/>
+		<Line text="Wow, really cute!" audiotag="random" tag="on"/>
+		<Line text="Nice choice!" audiotag="random" tag="on"/>
+		<Line text="I like that" audiotag="random" tag="on"/>
+		
+		<Line text="Dont wona to keep this one?" audiotag="random" tag="hover"/>
+		
+		<Line text="hmmm... which one to choose..." audiotag="random" tag="idle"/>
+		<Line text="...how about..." audiotag="random" tag="idle"/>
+		<Line text="... I wonder what to choose..." audiotag="random" tag="idle"/>
+		<Line text="I wonder, I wonder..." audiotag="random" tag="idle"/>
+		<Line text="hmmm.... what to wear...?" audiotag="random" tag="idle"/>
+		
+		<Line text="Yuyuko-sama asked me to put on something for the occasion." audiotag="supplypoipoi" tag="welcome"/>
+		<Line text="I need you to help me choose something suitable." audiotag="random" tag="welcome"/>
+		
+		<Line text="Oh you..." audiotag="random" tag="off"/>
+		<Line text="All right!" audiotag="random" tag="off"/>
+		<Line text="Off with that!" audiotag="random" tag="off"/>
+		<Line text="Enough of this, lets try something else." audiotag="random" tag="off"/>
+		<Line text="Off it goes." audiotag="random" tag="off"/>
+		<Line text="Lets change things up." audiotag="random" tag="off"/>
+		<Line text="Lets try another one." audiotag="random" tag="off"/>
+		<Line text="You know the best." audiotag="random" tag="off,on"/>
+		<Line text="Good choice." audiotag="random" tag="off,on"/>
+	</Dialog>
+</DressupCharacter>
